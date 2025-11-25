@@ -7,6 +7,7 @@ clearvars;
 addpath(genpath('dep'))
 Par.Paths.out_path='/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/home/bstrasser/Temp3/LukisScriptTest2';
 Par.Paths.csi_path{1} = '/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/home/bstrasser/Projects/Project9_ImplementRecoInICE/Step5_MultiCenterStudy/LargeData_d3hj/MeasAndLogData/UCSF/Volunteer5_20250912/meas_MID00033_FID33731_csi_fid_ViennaCrt_v1_01.dat';
+% Par.Paths.csi_path{1} = '/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/home/bstrasser/Projects/Project9_ImplementRecoInICE/DataForKatja/Results/UCSF/Vol5/Spectra';
 % Par.Paths.csi_path{1} = '/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/lab/Measurement_Data/specBONN_ptx/meas_MID00176_FID18878_csi_fid_ViennaCr_2D_cp.dat';
 Par.Paths.T1wImage='/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/home/bstrasser/Projects/Project9_ImplementRecoInICE/Step5_MultiCenterStudy/LargeData_d3hj/MeasAndLogData/UCSF/Volunteer5_20250912/MP2RAGE_0_7MM_TR4500_UNI_IMAGES_0006';
 Par.Paths.T1wImage_AntiNoise='/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/home/bstrasser/Projects/Project9_ImplementRecoInICE/Step5_MultiCenterStudy/LargeData_d3hj/MeasAndLogData/UCSF/Volunteer5_20250912/MP2RAGE_0_7MM_TR4500_INV2_0007';
@@ -421,15 +422,15 @@ Paths.BasisSetFile = '/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/
 
 % % FittingMask = mask;
 % % FOR DEBUGGING:
-FittingMask = zeros(size_MultiDims(csi.Data,1:3));
-FittingMask(29:34,29:34,1) = 1;
+% FittingMask = zeros(size_MultiDims(csi.Data,1:3));
+% FittingMask(29:34,29:34,1) = 1;
 % % FOR DEBUGGING END
 
 
 Settings.AllowNonEmptyDirs = true;
 ControlFile = './LCModel_Control_Volunteers_4_2_to_1_8.m';
 
-Paths.OutputDir = '/ceph/mri.meduniwien.ac.at/departments/radiology/mrsbrain/home/bstrasser/Temp3/LukisScriptTest2/LCModelOutDir';
+Paths.OutputDir = [Par.Paths.out_path '/LCModelOutDir'];
 [csi_FitResMaps,csi_FitResSpec] = op_PerformLCModelFitting(csi,FittingMask,Paths,ControlFile,Settings);
 
 mkdir([Par.Paths.out_path '/maps'])
