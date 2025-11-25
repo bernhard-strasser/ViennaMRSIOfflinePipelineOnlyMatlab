@@ -1,0 +1,3 @@
+[submodule "dep/MRSIMatlabFunctions"]
+	path = dep/MRSIMatlabFunctions
+	url = git@github.com-bernhard-strasser:bernhard-strasser/MRSIMatlabFunctions.git
